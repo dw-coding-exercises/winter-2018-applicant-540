@@ -10,7 +10,15 @@
   (POST "/search"
       {params :params}
       (println params)
-       (home/page))
+
+      (let [city (:city params)
+            state (:state params)
+            zip (:zip params)
+            street (:street params)
+            street2 (:street2 params)]
+
+        (home/page state)
+        ))
   (route/resources "/")
   (route/not-found "Not found"))
 
