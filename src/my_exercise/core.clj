@@ -10,17 +10,16 @@
 (defroutes app
   (GET "/" [] home/page)
   (POST "/search"
-      {params :params}
+    {params :params}
 
-      (let [city (:city params)
-            state (:state params)
-            zip (:zip params)
-            street (:street params)
-            street2 (:street2 params)]
-                
-        ;builds request string from params sends to election API then passes the body of the response to the view
-        (elections/upcoming-elections (:body (helpers/httpCall (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state))))
-        ))
+    (let [city (:city params)
+          state (:state params)
+          zip (:zip params)
+          street (:street params)
+          street2 (:street2 params)]
+              
+      ;builds request string from params sends to election API then passes the body of the response to the view
+      (elections/upcoming-elections (:body (helpers/httpCall (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state))))))
   (route/resources "/")
   (route/not-found "Not found"))
 
