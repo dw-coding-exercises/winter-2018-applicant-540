@@ -7,6 +7,10 @@
 
 (defroutes app
   (GET "/" [] home/page)
+  (POST "/search"
+      {params :params}
+      (println params)
+       (home/page))
   (route/resources "/")
   (route/not-found "Not found"))
 
