@@ -131,8 +131,15 @@
     [:div.button
      [:button {:type "submit"} "Search"]]]])
 
+(defn show-upcoming-elections [elections]
+  (html5
+    [:h2 "Your Upcoming Elections"]
+    [:p elections])
+  )
+
 (defn page [request]
   (html5
    (header request)
    (instructions request)
-   (address-form request)))
+   (address-form request)
+   (show-upcoming-elections request)))

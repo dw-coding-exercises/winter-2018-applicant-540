@@ -17,10 +17,11 @@
             street (:street params)
             street2 (:street2 params)]
 
-        (println (helpers/httpCall (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state)))
+        ; (println (:body (helpers/httpCall (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state))) )
+        
         
 
-        (home/page state)
+        (home/show-upcoming-elections (:body (helpers/httpCall (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state))))
         ))
   (route/resources "/")
   (route/not-found "Not found"))
