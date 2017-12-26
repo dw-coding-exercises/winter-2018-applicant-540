@@ -4,6 +4,7 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.reload :refer [wrap-reload]]
             [my-exercise.home :as home]
+            [my-exercise.elections :as elections]
             [my-exercise.helpers :as helpers]))
 
 (defroutes app
@@ -21,7 +22,7 @@
         
         
 
-        (home/show-upcoming-elections (:body (helpers/httpCall (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state))))
+        (elections/upcoming-elections (:body (helpers/httpCall (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state))))
         ))
   (route/resources "/")
   (route/not-found "Not found"))
