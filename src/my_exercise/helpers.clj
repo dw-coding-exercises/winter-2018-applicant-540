@@ -19,6 +19,7 @@
     [url city state]
     (if (= city "") (str url (lowerCaseItem state)) (str url (lowerCaseItem state) "/place:" (replaceSpacesWithUnderscores (lowerCaseItem city)))))
 
+;sends http call using clj-http
 (defn httpCall
   [url]
   (client/get url {:accept :json}))

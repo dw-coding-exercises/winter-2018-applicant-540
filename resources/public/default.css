@@ -42,3 +42,9 @@ input:focus {
 button {
   margin-left: .5em;
 }
+
+.election-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
