@@ -3,13 +3,13 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.reload :refer [wrap-reload]]
-            [my-exercise.home :as home]))
+            [my-exercise.home :as home]
+            [my-exercise.helpers :as helpers]))
 
 (defroutes app
   (GET "/" [] home/page)
   (POST "/search"
       {params :params}
-      (println params)
 
       (let [city (:city params)
             state (:state params)
@@ -17,6 +17,8 @@
             street (:street params)
             street2 (:street2 params)]
 
+        
+        (println (helpers/assembleRequestString "https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:" city state))
         (home/page state)
         ))
   (route/resources "/")
